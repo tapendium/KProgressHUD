@@ -7,7 +7,7 @@ buildscript {
     }
 }
 
-
+apply plugin: 'maven-publish'
 apply plugin: 'com.android.library'
 
 project.archivesBaseName = 'kprogresshud'
@@ -30,6 +30,19 @@ android {
     }
     lintOptions {
         abortOnError false
+    }
+}
+
+publishing {
+    publications {
+        release(MavenPublication) {
+            groupId = 'com.tapendium'
+            artifactId = 'KProgressHUD'
+            version = '1.2.0'
+            afterEvaluate {
+                from components.release
+            }
+        }
     }
 }
 
